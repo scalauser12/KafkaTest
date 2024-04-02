@@ -27,6 +27,8 @@ public class KafkaConfig {
     @Value(value = "${spring.kafka.streams.state.dir}")
     private String stateStoreLocation;
 
+
+
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     KafkaStreamsConfiguration kStreamsConfig() {
         Map<String, Object> props = new HashMap<>();
@@ -36,6 +38,7 @@ public class KafkaConfig {
         props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         // configure the state location to allow tests to use clean state for every run
         props.put(STATE_DIR_CONFIG, stateStoreLocation);
+
 
         return new KafkaStreamsConfiguration(props);
     }
